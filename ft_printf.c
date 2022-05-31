@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:19:33 by saguesse          #+#    #+#             */
-/*   Updated: 2022/05/31 16:18:11 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:10:02 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	arg_type(const char *s, va_list args, int i, int j)
 {
-	
 	if (s[j] == 'c')
 		i += ft_putchar(va_arg(args, int));
 	else if (s[j] == 's')
-		i += ft_putstr(va_arg(args, char*));
+		i += ft_putstr(va_arg(args, char *));
+	else if (s[j] == 'p')
+	{
+		ft_putstr("0x");
+		ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789abcdef");
+	}
 	else if (s[j] == 'd')
 		ft_putnbr(va_arg(args, int));
 	else if (s[j] == 'i')
@@ -64,7 +68,9 @@ int	ft_printf(const char *s, ...)
 
 int	main()
 {
-	ft_printf("Entier d : %X %c %s %%%u", 42, 'c', "hello", 4294967296);
-	printf("\n%X", 2147483637);
+	char	s[] = "hello";
+
+	ft_printf("%s\n", s);
+	printf("\n%p", s);
 	return (0);
 }
