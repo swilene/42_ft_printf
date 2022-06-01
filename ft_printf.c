@@ -6,35 +6,36 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:19:33 by saguesse          #+#    #+#             */
-/*   Updated: 2022/05/31 18:10:02 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:53:33 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	arg_type(const char *s, va_list args, int i, int j)
+int	arg_type(const char c, va_list args, int i)
 {
-	if (s[j] == 'c')
+	if (c == 'c')
 		i += ft_putchar(va_arg(args, int));
-	else if (s[j] == 's')
+	else if (c == 's')
 		i += ft_putstr(va_arg(args, char *));
-	else if (s[j] == 'p')
+	else if (c == 'p')
 	{
-		ft_putstr("0x");
-		ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789abcdef");
+		i += ft_putstr("0x");
+		i += ft_putnbr_hexa(va_arg(args, long unsigned int), 16,
+				"0123456789abcdef");
 	}
-	else if (s[j] == 'd')
-		ft_putnbr(va_arg(args, int));
-	else if (s[j] == 'i')
-		ft_putnbr(va_arg(args, int));
-	else if (s[j] == 'u')
-		ft_putnbr_unsigned(va_arg(args, unsigned int));
-	else if (s[j] == 'x')
-		ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789abcdef");
-	else if (s[j] == 'X')
-		ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789ABCDEF");
-	else if (s[j] == '%')
+	else if (c == 'i' || c == 'd')
+		i += ft_putnbr(va_arg(args, int));
+	else if (c == 'u')
+		i += ft_putnbr_unsigned(va_arg(args, unsigned int));
+	else if (c == 'x')
+		i += ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789abcdef");
+	else if (c == 'X')
+		i += ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789ABCDEF");
+	else if (c == '%')
 		i += ft_putchar('%');
+	else
+		ft_putstr("Error\n");
 	return (i);
 }
 
@@ -49,28 +50,29 @@ int	ft_printf(const char *s, ...)
 	j = 0;
 	while (j < ft_strlen(s))
 	{
-		while (s[j] != '%' && s[j])
+		if (s[j] == '%')
 		{
-			ft_putchar(s[j]);
 			j++;
-			i++;
+			i += arg_type(s[j], args, 0);
+			j++;
 		}
-		j++;
-		i += arg_type(s, args, i, j);
-		j++;
+		else
+		{
+			i += ft_putchar(s[j]);
+			j++;
+		}
 	}
 	va_end(args);
-	/*printf("\n%d", ft_strlen(s));
-	printf("\n%d", j);
-	printf("\n%d", i);*/
 	return (i);
 }
 
 int	main()
 {
-	char	s[] = "hello";
+	//char	s[] = "hello";
+	//int i = 25421;
+	//char c = 's';
 
-	ft_printf("%s\n", s);
-	printf("\n%p", s);
+	ft_printf("%d\n", ft_printf("%p\n", (int)0));
+	printf("%d\n", printf("%p\n", (void *)0));
 	return (0);
 }

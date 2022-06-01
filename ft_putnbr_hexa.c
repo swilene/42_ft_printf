@@ -6,24 +6,23 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:30:07 by saguesse          #+#    #+#             */
-/*   Updated: 2022/05/31 16:11:20 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:09:26 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putnbr_hexa(unsigned int nb, unsigned int size, char *base)
+int	ft_putnbr_hexa(size_t nb, size_t size, char *base)
 {
-	if (/*nb >= 0 &&*/ nb < size)
-		ft_putchar(base[nb]);
-	/*else if (nb < 0)
-	{
-		ft_putchar('-');
-		ft_putnbr_hexa(-nb, size, base);
-	}*/
+	int	i;
+
+	i = 0;
+	if (nb < size)
+		i += ft_putchar(base[nb]);
 	else
 	{
-		ft_putnbr_hexa(nb / size, size, base);
-		ft_putnbr_hexa(nb % size, size, base);
+		i += ft_putnbr_hexa(nb / size, size, base);
+		i += ft_putnbr_hexa(nb % size, size, base);
 	}
+	return (i);
 }
