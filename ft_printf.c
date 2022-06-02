@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:19:33 by saguesse          #+#    #+#             */
-/*   Updated: 2022/06/02 14:35:19 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:37:23 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_printf(const char *s, ...)
 	int		j;
 	int		i;
 
+	if (!s)
+		return (ft_putstr("Error: null format string\n"));
 	va_start(args, s);
 	i = 0;
 	j = 0;
@@ -68,7 +70,7 @@ int	ft_printf(const char *s, ...)
 	//int i = 25421;
 	//char c = 's';
 
-	ft_printf("\n%d\n", ft_printf("%p", 16));
-	printf("\n%d\n", printf("%p", (void *)16));
+	ft_printf("%d%d", 42);
+	printf("\n%d%d", 42);
 	return (0);
 }*/
