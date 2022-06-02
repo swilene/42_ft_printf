@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:19:33 by saguesse          #+#    #+#             */
-/*   Updated: 2022/06/01 18:53:33 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:35:19 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,15 @@ int	arg_type(const char c, va_list args, int i)
 	else if (c == 's')
 		i += ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-	{
-		i += ft_putstr("0x");
-		i += ft_putnbr_hexa(va_arg(args, long unsigned int), 16,
-				"0123456789abcdef");
-	}
+		i += check_if_null(va_arg(args, long unsigned int));
 	else if (c == 'i' || c == 'd')
 		i += ft_putnbr(va_arg(args, int));
 	else if (c == 'u')
 		i += ft_putnbr_unsigned(va_arg(args, unsigned int));
 	else if (c == 'x')
-		i += ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789abcdef");
+		i += ft_putnbr_hexa(va_arg(args, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-		i += ft_putnbr_hexa(va_arg(args, unsigned int), 16, "0123456789ABCDEF");
+		i += ft_putnbr_hexa(va_arg(args, unsigned int), "0123456789ABCDEF");
 	else if (c == '%')
 		i += ft_putchar('%');
 	else
@@ -66,13 +62,13 @@ int	ft_printf(const char *s, ...)
 	return (i);
 }
 
-int	main()
+/*int	main()
 {
-	//char	s[] = "hello";
+	//char	*s = NULL;
 	//int i = 25421;
 	//char c = 's';
 
-	ft_printf("%d\n", ft_printf("%p\n", (int)0));
-	printf("%d\n", printf("%p\n", (void *)0));
+	ft_printf("\n%d\n", ft_printf("%p", 16));
+	printf("\n%d\n", printf("%p", (void *)16));
 	return (0);
-}
+}*/

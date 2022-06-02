@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:58:29 by saguesse          #+#    #+#              #
-#    Updated: 2022/05/31 16:05:30 by saguesse         ###   ########.fr        #
+#    Updated: 2022/06/02 14:38:46 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = ft_printf.c \
 	ft_strlen.c \
 	ft_putnbr_unsigned.c \
 	ft_putnbr_hexa.c \
+	ft_putptr.c \
 
 BONUS_SRC = .c
 
@@ -43,3 +44,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: clean fclean re
