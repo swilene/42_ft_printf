@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:19:33 by saguesse          #+#    #+#             */
-/*   Updated: 2022/06/03 12:35:41 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:30:21 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,9 @@ int	ft_printf(const char *s, ...)
 			i += arg_type(s[j], args, 0);
 		}
 		else
-			ft_putchar(s[j]);
+			i += ft_putchar(s[j]);
 		j++;
 	}
 	va_end(args);
 	return (i);
 }
-
-/*int	main()
-{
-	//char	*s = NULL;
-	//int i = 25421;
-	//char c = 's';
-
-	ft_printf("\n%d\n", ft_printf("salut  %d  % %q   ", 42));
-	printf("\n%d\n", printf(" salut   %d  h ell  o %% ", 42, "hello"));
-	return (0);
-}*/

@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:58:29 by saguesse          #+#    #+#              #
-#    Updated: 2022/06/03 09:48:43 by saguesse         ###   ########.fr        #
+#    Updated: 2022/06/03 15:31:54 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ SRC = ft_printf.c \
 	ft_putnbr_hexa.c \
 	ft_putptr.c \
 	ft_strchr.c \
-
-BONUS_SRC = .c
 
 OBJ = $(SRC:.c=.o)
 
