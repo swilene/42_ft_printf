@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:19:33 by saguesse          #+#    #+#             */
-/*   Updated: 2022/06/02 17:37:23 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:35:41 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,27 @@ int	arg_type(const char c, va_list args, int i)
 		i += ft_putnbr_hexa(va_arg(args, unsigned int), "0123456789ABCDEF");
 	else if (c == '%')
 		i += ft_putchar('%');
-	else
-		ft_putstr("Error\n");
 	return (i);
+}
+
+int	check_s(const char *s)
+{	
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (ft_putstr("Error: null format string\n"));
+	while (s[i])
+	{
+		if (s[i] == '%')
+		{
+			i++;
+			if (s[i] == '\0' || ft_strchr("cspdiuxX%", s[i]) == NULL)
+				return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	ft_printf(const char *s, ...)
@@ -41,10 +59,10 @@ int	ft_printf(const char *s, ...)
 	int		j;
 	int		i;
 
-	if (!s)
-		return (ft_putstr("Error: null format string\n"));
 	va_start(args, s);
 	i = 0;
+	if (check_s(s) == 0)
+		return (ft_putstr("Error"));
 	j = 0;
 	while (j < ft_strlen(s))
 	{
@@ -52,13 +70,10 @@ int	ft_printf(const char *s, ...)
 		{
 			j++;
 			i += arg_type(s[j], args, 0);
-			j++;
 		}
 		else
-		{
-			i += ft_putchar(s[j]);
-			j++;
-		}
+			ft_putchar(s[j]);
+		j++;
 	}
 	va_end(args);
 	return (i);
@@ -70,7 +85,7 @@ int	ft_printf(const char *s, ...)
 	//int i = 25421;
 	//char c = 's';
 
-	ft_printf("%d%d", 42);
-	printf("\n%d%d", 42);
+	ft_printf("\n%d\n", ft_printf("salut  %d  % %q   ", 42));
+	printf("\n%d\n", printf(" salut   %d  h ell  o %% ", 42, "hello"));
 	return (0);
 }*/

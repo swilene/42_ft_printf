@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:16:37 by saguesse          #+#    #+#             */
-/*   Updated: 2022/06/02 14:27:13 by saguesse         ###   ########.fr       */
+/*   Updated: 2022/06/03 09:48:28 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	ft_putnbr(int n);
 int	ft_putnbr_unsigned(unsigned int n);
 int	ft_putnbr_hexa(size_t nb, char *base);
 int	check_if_null(size_t nb);
+char	*ft_strchr(const char *s, int c);
 
 #endif
