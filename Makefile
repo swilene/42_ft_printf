@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:58:29 by saguesse          #+#    #+#              #
-#    Updated: 2022/06/03 15:31:54 by saguesse         ###   ########.fr        #
+#    Updated: 2022/06/06 12:38:36 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ SRC = ft_printf.c \
 	ft_putptr.c \
 	ft_strchr.c \
 
+HEADER = libftprintf.h
+
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME) 
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+%.o : %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
